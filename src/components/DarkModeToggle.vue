@@ -29,20 +29,17 @@ export default {
     })
 
     // Watch for changes and store the theme preference
-    const watchTheme = () => {
+    watch(isDarkMode, () => {
       if (isDarkMode.value) {
         localStorage.setItem('theme', 'dark')
       } else {
         localStorage.setItem('theme', 'light')
       }
-    }
-
-    watch(isDarkMode, watchTheme)
+    })
 
     return {
       isDarkMode,
-      toggleDarkMode,
-      watchTheme
+      toggleDarkMode
     }
   }
 }
@@ -55,7 +52,7 @@ export default {
 }
 </style>
 <template>
-  <div class='dark-mode-toggle cursor-pointer flex gap-2 text-xs sm:text-base' @click='toggleDarkMode'>
+  <div class='dark-mode-toggle cursor-pointer flex gap-2 text-xs sm:text-base font-semibold' @click='toggleDarkMode'>
     <i class="pi pi-moon"></i>
     Dark Mode
   </div>

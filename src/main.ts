@@ -14,17 +14,17 @@ import InputText from 'primevue/inputtext'
 import InputIcon from 'primevue/inputicon'
 import FloatLabel from 'primevue/floatlabel'
 import Select from 'primevue/select'
-// import { definePreset } from '@primevue/themes'
-// const MyPreset = definePreset(Aura, {
-//   // Your customizations, see the following sections for examples
-// })
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { definePreset } from '@primevue/themes'
+import { THEME_PRESET } from '@/consts/ThemePreset'
 
 createApp(App)
   .use(store)
   .use(router)
   .use(PrimeVue, {
     theme: {
-      preset: Aura,
+      preset: definePreset(Aura, THEME_PRESET),
       options: {
         darkModeSelector: '.dark-theme'
       }
