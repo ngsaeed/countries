@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-  <Card class="w-full sm:w-16rem border-round-md" style="overflow: hidden">
+  <Card class="w-full sm:w-16rem border-round-md cursor-pointer" style="overflow: hidden">
     <template #header>
       <img alt="user header" :src="flag" class="h-10rem"/>
     </template>

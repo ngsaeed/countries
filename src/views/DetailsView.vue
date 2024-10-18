@@ -60,21 +60,23 @@ watch(route, () => {
 </script>
 
 <template>
-  <div class="flex flex-column px-3 sm:px-8 py-5 sm:py-7">
+  <div class="flex flex-column px-4 sm:px-8 py-5 sm:py-7">
     <div class="sm:mt-3 mt-3">
       <Button class="px-5 shadow-6 border-round-sm" :raised="true" label="Back" icon="pi pi-arrow-left" @click="goBack()"></Button>
     </div>
     <div class="flex flex-column sm:flex-row pt-7 sm:pt-8">
-      <div class="col-12 sm:col-6 bg-cyan-200 h-25rem"></div>
-      <div class="col-12 sm:col-6 bg-red-200 flex flex-column px-0 sm:pl-7">
-        <div class="bg-blue-400 flex flex-column justify-content-between h-full">
+      <div class="col-12 px-0 sm:col-6 sm:pr-7 max-h-25rem" v-if="countryInfo.flags">
+        <img class="w-full" :src="countryInfo.flags.png" :alt="countryInfo.flags.alt">
+      </div>
+      <div class="col-12 sm:col-6 flex flex-column px-0 sm:pl-6">
+        <div class="flex flex-column justify-content-between h-full">
           <div class="h-6rem flex align-items-center">
-            <span class="text-4xl font-bold">
-              Belgium
+            <span class="text-4xl font-bold" v-if="countryInfo.name">
+              {{ countryInfo.name.common }}
             </span>
           </div>
-          <div class="bg-red-800 flex-grow-1 flex flex-column sm:flex-row">
-            <div class="col-12 sm:col-6 pl-0 bg-blue-100">
+          <div class="flex-grow-1 flex flex-column sm:flex-row">
+            <div class="col-12 sm:col-6 pl-0">
               <ul class="list-none pl-0 mt-0">
                 <li class="line-height-4" v-for="detail in detailsList1" :key="detail.label">
                   <span class="font-semibold">{{detail.label}}: </span>
@@ -82,7 +84,7 @@ watch(route, () => {
                 </li>
               </ul>
             </div>
-            <div class="col-12 sm:col-6 pl-0 bg-red-400">
+            <div class="col-12 sm:col-6 pl-0">
               <ul class="list-none pl-0 mt-0">
                 <li class="line-height-4" v-for="detail in detailsList2" :key="detail.label">
                   <span class="font-semibold">{{detail.label}}: </span>
@@ -91,10 +93,10 @@ watch(route, () => {
               </ul>
             </div>
           </div>
-          <div class="bg-blue-800">
+          <div class="">
             <div class="font-semibold sm:inline-flex mb-4">Border Countries: </div>
             <div class="flex sm:inline-flex mx-2 gap-2 flex-wrap">
-              <Button :v-if="borders" v-for="country in borders" :key="country" :label="country" size="small" class="px-4"
+              <Button :v-if="borders" v-for="country in borders" :key="country" :label="country" size="small" class="px-4 shadow-3"
                       @click="goToCountry(country)"></Button>
             </div>
           </div>

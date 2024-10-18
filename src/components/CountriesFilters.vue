@@ -1,16 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
+import router from '@/router'
+import { useRoute } from 'vue-router'
 
+const route = useRoute() // Access the current route
 const searchQuery = ref('') // Search input binding
 const selectedRegion = ref() // Region select binding
+let query = {}
 const regions = ref([
-  { name: 'Africa', code: 'AfricaAfrica' },
-  { name: 'America', code: 'AmericaAmerica' },
-  { name: 'Asia', code: 'AsiaAsia' },
-  { name: 'Europe', code: 'EuropeEurope' },
-  { name: 'Oceania', code: 'OceaniaOceania' }
+  { name: 'Africa', code: 'Africa' },
+  { name: 'America', code: 'Americas' },
+  { name: 'Asia', code: 'Asia' },
+  { name: 'Europe', code: 'Europe' },
+  { name: 'Oceania', code: 'Oceania' }
 ])
 
+watch(selectedRegion, (newValue) => {
+  query = { ...query, region: newValue.code }
+  router.replace({ path: '/', query })
+})
+
+watch(searchQuery, (newValue) => {
+  query = { ...query, name: newValue }
+  router.replace({ path: '/', query })
+})
+
+onMounted(() => {
+  if (route.query && route.query.region) {
+    selectedRegion.value = regions.value.filter(region => region.code === route.query.region as string)[0]
+  }
+  if (route.query && route.query.name) {
+    searchQuery.value = route.query.name as string
+  }
+})
 </script>
 
 <template>
