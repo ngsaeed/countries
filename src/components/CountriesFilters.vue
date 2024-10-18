@@ -15,13 +15,10 @@ const regions = ref([
 
 <template>
   <div class="flex flex-column sm:flex-row justify-content-between px-3 sm:px-8 py-4 sm:py-6 gap-5">
-    <FloatLabel variant="on">
-      <IconField>
-        <InputIcon class="pi pi-search"/>
-        <InputText size="large" id="over_label" v-model="searchQuery" autocomplete="off" class="search-input w-full sm:w-30rem"/>
-      </IconField>
-      <label for="over_label">Search for a country...</label>
-    </FloatLabel>
+    <IconField>
+      <InputIcon class="pi pi-search"/>
+      <InputText size="large" id="over_label" v-model="searchQuery" autocomplete="off" placeholder="Search for a country..." class="search-input w-full sm:w-30rem"/>
+    </IconField>
     <Select v-model="selectedRegion" :options="regions" optionLabel="name" placeholder="Filter by Region" class="region-select w-12rem" />
   </div>
 </template>

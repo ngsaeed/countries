@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     component: CountriesView
   },
   {
-    path: '/details',
+    path: '/details/:name',
     name: 'details',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
